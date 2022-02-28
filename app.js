@@ -1,7 +1,6 @@
-const mongodb =     require('mongodb')
+const {MongoClient, ObjectId} =     require('mongodb')
 const express =     require('express');
 const app=          express();
-const MongoClient = mongodb.MongoClient;
 
 
 const connectionURL = `mongodb+srv://AubieVikash:Aubergine2022@cluster0.bdpkh.mongodb.net/test`
@@ -19,7 +18,7 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client)=>{
 
     // db.collection('users').insertOne({
     //     name: 'Vikash',
-    //     age: 21
+    //     age: 25
     // }, (error, result)=>{
     //     if(error){
     //         console.log('Unable to insert user')
@@ -75,7 +74,41 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client)=>{
     //     console.log(user)
     // });
 
+    // db.collection('users').find({ name: 'Vikash'}).toArray((error, users)=>{
+    //     if(error){
+    //         console.log(error)
+    //     }
 
+    //     console.log(users);
+    // })
+
+
+
+    //UPDATE OPERATIONS - MONGODB
+
+    // db.collection('users').updateOne({
+    //     _id: new ObjectId("621c9d0bc45510049ad0a4d7")
+    // },{
+    //     $set: {
+    //         name: 'Mike'
+    //     }
+    // }).then((result)=>{
+    //     console.log(result)
+    // }).catch((error)=>{
+    //     console.log(error)
+    // })
+
+    // db.collection('tasks').updateMany({
+    //     filters
+    // },{
+    //     $set: {
+    //         fields
+    //     }
+    // }).then((result)=>{
+
+    // }).catch((error)=>{
+
+    // })
 
 
 
