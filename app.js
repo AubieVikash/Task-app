@@ -111,9 +111,27 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client)=>{
     // })
 
 
+    //DELETE OPERATIONS- MONGODB
+
+    // db.collection('users').deleteMany({
+    //     age: 25
+    // }).then((result)=>{
+
+    // }).catch((error)=>{
+
+    // })
+
+    // db.collection('users').deleteOne({
+    //     _id: new ObjectId("")
+    // }).then((result)=>{
+
+    // }).catch((error)=>{
+
+    // })
 
 
 
+    
     console.log('connected successfully')
 });
 
