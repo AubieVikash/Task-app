@@ -15,6 +15,8 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client)=>{
 
     const db = client.db(databaseName)
 
+    //CREATE OPERATIONS- MONGODB
+
     // db.collection('users').insertOne({
     //     name: 'Vikash',
     //     age: 21
@@ -42,24 +44,42 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client)=>{
     //     console.log(data);
     // });
 
-    db.collection('tasks').insertMany([
-        {
-            task: 'clean your desk',
-            frequency: 2
-        },{
-            task: 'join scrum',
-            frequency: 5
-        },{
-            task: 'report team lead',
-            frequency: 3
-        }
-    ], (error, data)=>{
-        if(error){
-            return console.log('unable to insert tasks')
-        }
+    // db.collection('tasks').insertMany([
+    //     {
+    //         task: 'clean your desk',
+    //         frequency: 2
+    //     },{
+    //         task: 'join scrum',
+    //         frequency: 5
+    //     },{
+    //         task: 'report team lead',
+    //         frequency: 3
+    //     }
+    // ], (error, data)=>{
+    //     if(error){
+    //         return console.log('unable to insert tasks')
+    //     }
 
-        console.log(data)
-    });
+    //     console.log(data)
+    // });
+
+    
+    
+    //READ OPERATIONS - MONGODB
+
+    // db.collection('users').findOne({ name: 'Vikash' }, (error, user)=>{
+    //     if(error){
+    //         return console.log('Unable to fetch document')
+    //     }
+
+    //     console.log(user)
+    // });
+
+
+
+
+
+
 
     console.log('connected successfully')
 });
