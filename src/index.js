@@ -10,78 +10,87 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 
 //create user route
-app.post('/user', (req, res)=>{
+app.post('/user', async (req, res)=>{
     const user = new User(req.body)
-    // console.log(user)
-    user.save().then(()=>{
-        res.send(user)
-    }).catch((error)=>{
-        res.status(400).send(error.message)
-    })
+
+    try {
+        await user.save()
+        res.status(201).send(user)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //get all users
-app.get('/users', (req, res)=>{
-    User.find().then((users)=>{
-        res.send(users)
-    }).catch((error)=>{
-        res.status(400).send(error)
-    })
+app.get('/users', async (req, res)=>{
+
+    try {
+        const users = await User.find()
+        res.status(201).send(users)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //get user by _id
-app.get('/users/:id', (req, res)=>{
+app.get('/users/:id', async (req, res)=>{
     const _id = req.params.id
 
-    User.findById(_id).then((user)=>{
+    try {
+        const user = await User.findById(_id)
+
         if(!user){
-            return res.status(404).send('no such user found')
+            return res.status(404).send('something went wrong')
         }
 
-        res.send(user)
-    }).catch((error)=>{
-        res.status(500).send('something went wrong')
-    })
+        res.status(201).send(user)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 
 //create task route
-app.post('/task', (req, res)=>{
+app.post('/task', async (req, res)=>{
     const task = new Task(req.body)
 
-    task.save().then(()=>{
-        res.send(task)
-    }).catch((error)=>{
-        res.status(400).send(error.message)
-    })
+    try {
+        await task.save()
+        res.status(201).send(task)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //get all tasks route
-app.get('/tasks', (req, res)=>{
-    Task.find().then((tasks)=>{
-        res.send(tasks)
-    }).catch((error)=>{
-        res.status(404).send(error)
-    })
+app.get('/tasks', async (req, res)=>{
+    try {
+        const tasks = await Task.find()
+        res.status(201).send(tasks)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 //get task by _id route
-app.get('/tasks/:id', (req, res)=>{
+app.get('/tasks/:id', async (req, res)=>{
     const _id = req.params.id
 
-    Task.findById(_id).then((task)=>{
+    try {
+        const task = await Task.findById(_id)
+
         if(!task){
-            return res.status(404).send('no such task found')
+            res.status(400).send('something went wrong')
         }
 
-        res.send(task)
-    }).catch((error)=>{
-        res.status(500).send('something went wrong')
-    })
+        res.status(201).send(task)
+    } catch (error) {
+        res.status(500).send(error)
+    }
 })
 
 
-//seting up server
+//setting up server
 app.listen(port, ()=>{
     console.log(`server up and running on http://localhost:${port}`)
 })
