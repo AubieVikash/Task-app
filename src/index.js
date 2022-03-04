@@ -21,3 +21,7 @@ app.use(
 app.listen(port, () => {
     console.log(`server up and running on http://localhost:${port}`)
 })
+
+
+const Task = require('./models/task')
+const User = require('./models/user')
